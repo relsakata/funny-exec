@@ -7,6 +7,14 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
 ]=]
 
+getgenv().identityexecutor = function()
+	return "Sakata X FE Bypass"
+end
+
+getgenv().printidentity = function()
+	print('Current identity is', 9e9)
+end
+
 -- Instances: 6 | Scripts: 1 | Modules: 0
 local G2L = {};
 

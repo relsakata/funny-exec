@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
 ]=]
 
-getgenv().identityexecutor = function()
+getgenv().identifyexecutor = function()
 	return "Sakata X FE Bypass"
 end
 

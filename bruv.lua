@@ -1,11 +1,4 @@
---[=[
- d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
-88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
-88      88    88    88            odD'      88      88    88 88ooo88 
-88  ooo 88    88    88          .88'        88      88    88 88~~~88 
-88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88 
- Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
-]=]
+--this is for a joke get out nigga
 
 getgenv().identifyexecutor = function()
 	return "Sakata X FE Bypass"
@@ -15,12 +8,26 @@ getgenv().printidentity = function()
 	print('Current identity is', 9e9)
 end
 
+getgenv().decompile = function(instance)
+	return instance.Source -- funny
+end
+
 -- Instances: 6 | Scripts: 1 | Modules: 0
 local G2L = {};
 
+if not cloneref then
+	print("No clonref supported")
+	function cloneref(...)
+		return ...
+	end
+end
+
+local CoreGui = cloneref(game:GetService("CoreGui"))
+
 -- StarterGui.ScreenGui
-G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui"));
+G2L["1"] = Instance.new("ScreenGui", CoreGui);
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1"].Name = "sktui"
 
 -- StarterGui.ScreenGui.Frame
 G2L["2"] = Instance.new("Frame", G2L["1"]);
@@ -76,23 +83,18 @@ G2L["6"] = Instance.new("LocalScript", G2L["2"]);
 G2L["6"]["Name"] = [[Dragify]];
 
 G2L["4"].MouseButton1Up:Connect(function()
-	local succ, err = pcall(function()
+	xpcall(function()
 		loadstring(G2L["3"].Text)()
-	end)
-	
-	if not succ then
-		warn(err)
-	end
+	end, warn)
 end)
 
 G2L["5"].MouseButton1Click:Connect(function()
 	G2L["3"].Text = ""
 end)
 
--- StarterGui.ScreenGui.Frame.Dragify
 local function C_6()
 local script = G2L["6"];
-	local UIS = game:GetService("UserInputService")
+	local UIS = cloneref(game:GetService("UserInputService"))
 	function dragify(Frame)
 		dragToggle = nil
 		dragSpeed = 0.15
@@ -121,7 +123,7 @@ local script = G2L["6"];
 				dragInput = input
 			end
 		end)
-		game:GetService("UserInputService").InputChanged:Connect(function(input)
+		UIS.InputChanged:Connect(function(input)
 			if input == dragInput and dragToggle then
 				updateInput(input)
 			end
